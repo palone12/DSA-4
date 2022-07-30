@@ -8,13 +8,21 @@ public class BinartTreeUse {
         System.out.println("Number of Nodes is "+numOfNodes(root));
         System.out.println("Sum of Nodes  is Eqaul to " + sumOFNodes(root));
 
+        preOrder(root);
+        System.out.println();
+        postOrderTraversal(root);
+        System.out.println();
+        inorderTravwersal(root);
+        System.out.println();
+        System.out.println("Largest Node is "+ largestNode(root));
+
 
     }
     public static void printTree(BinaryTreeNode<Integer> root){
         if(root==null){
             return ;
         }
-        System.out.println(root.data);
+        System.out.print(root.data +" ");
         printTree(root.left);
         printTree(root.right);
 
@@ -96,5 +104,47 @@ public class BinartTreeUse {
         int leftNodeData =sumOFNodes(root.left);
         int rightNodeData = sumOFNodes(root.right);
         return  root.data +leftNodeData +rightNodeData;
+    }
+
+    // Tree Traversals
+    // Pre-Order Traversal --> root-->left-->right
+    public static void preOrder(BinaryTreeNode<Integer>root){
+        if(root==null){
+            return;
+        }
+        System.out.print(root.data+ " ");
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+
+    //Post Order Traversal In BinaryTrees
+    //left--> right--> root
+    public static void postOrderTraversal(BinaryTreeNode<Integer>root){
+        if(root==null){
+            return ;
+        }
+        postOrderTraversal(root.left);
+        postOrderTraversal(root.right);
+        System.out.print(root.data+" ");
+    }
+
+    // Inorder Taversal left--> root-->right
+    public static void inorderTravwersal(BinaryTreeNode<Integer>root){
+        if(root==null){
+            return ;
+        }
+        inorderTravwersal(root.left);
+        System.out.print(root.data+" ");
+        inorderTravwersal(root.right);
+    }
+    // Largest Node in Binary Tree
+    public static  int largestNode(BinaryTreeNode<Integer>root){
+        if(root==null){
+            return  -1;
+        }
+        int largestNodeLeft= largestNode(root.left);
+        int largestNodeRight =largestNode(root.right);
+        return Math.max(root.data,Math.max(largestNodeLeft,largestNodeRight));
+
     }
 }
