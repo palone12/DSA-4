@@ -4,7 +4,10 @@ import java.util.Scanner;
 
 public class BinartTreeUse {
     public static void main(String[] args) {
-        printTreeDetailed(takeTreeInputBetter(true,0,true));
+        BinaryTreeNode<Integer> root = takeTreeInputBetter(true,0,true);
+        System.out.println("Number of Nodes is "+numOfNodes(root));
+        System.out.println("Sum of Nodes  is Eqaul to " + sumOFNodes(root));
+
 
     }
     public static void printTree(BinaryTreeNode<Integer> root){
@@ -55,7 +58,7 @@ public class BinartTreeUse {
                 System.out.println("Enter left Child of "+parentData);
             }
             else {
-                System.out.println("Enter right Child of"+ parentData);
+                System.out.println("Enter right Child of "+ parentData);
             }
         }
         Scanner sc = new Scanner( System.in);
@@ -70,5 +73,28 @@ public class BinartTreeUse {
         root.left = leftChild;
         root.right=rightChild;
         return root;
+    }
+
+    // Number of Nodes in Binary Tree
+    public static  int numOfNodes (BinaryTreeNode<Integer>root){
+        if(root==null){
+            return 0;
+        }
+        int leftNodeCount = numOfNodes(root.left);
+        int righNodeCount = numOfNodes(root.right);
+        return 1+ leftNodeCount  +righNodeCount;
+
+
+    }
+
+    //Sumn of Nodes in  Binary Treee
+    public static int sumOFNodes (BinaryTreeNode<Integer> root){
+        if(root==null){
+            return 0;
+
+        }
+        int leftNodeData =sumOFNodes(root.left);
+        int rightNodeData = sumOFNodes(root.right);
+        return  root.data +leftNodeData +rightNodeData;
     }
 }
